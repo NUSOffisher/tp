@@ -282,7 +282,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * values efficiency and speed over user interface 
 * frequently performs batch operations (e.g. deleting a whole group)
 
-**Value proposition**: Our application provides a comprehensive list of potential job candidates. 
+**Value proposition**: 
+
+Our application provides a comprehensive list of potential job candidates. 
 It provides the ability to quickly change details (e.g. add, delete) of contacts, including streamlined batch operations. 
 It also categorises contacts, with the ability to quickly search, sort, and retrieve contacts. 
 It is optimised for fast keyboard navigation.
