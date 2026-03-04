@@ -40,12 +40,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Data
 
-### Jean Doe
+### Keison Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ke1st.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Ke1sT)]
+<!--[[portfolio](team/johndoe.md)]-->
 
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
