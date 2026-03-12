@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.hireshell.commons.core.index.Index;
 import seedu.hireshell.commons.util.StringUtil;
 import seedu.hireshell.logic.parser.exceptions.ParseException;
-import seedu.hireshell.model.person.Email;
-import seedu.hireshell.model.person.Name;
-import seedu.hireshell.model.person.Phone;
-import seedu.hireshell.model.person.Status;
+import seedu.hireshell.model.person.*;
 import seedu.hireshell.model.tag.Tag;
 
 /**
@@ -78,6 +75,21 @@ public class ParserUtil {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return new Status(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 
     /**

@@ -3,11 +3,7 @@ package seedu.hireshell.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.hireshell.model.person.Email;
-import seedu.hireshell.model.person.Name;
-import seedu.hireshell.model.person.Person;
-import seedu.hireshell.model.person.Phone;
-import seedu.hireshell.model.person.Status;
+import seedu.hireshell.model.person.*;
 import seedu.hireshell.model.tag.Tag;
 import seedu.hireshell.model.util.SampleDataUtil;
 
@@ -19,11 +15,13 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_RATING = "5.0";
     public static final String DEFAULT_STATUS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private Rating rating;
     private Status status;
     private Set<Tag> tags;
 
@@ -34,6 +32,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        rating = new Rating(DEFAULT_RATING);
         status = new Status(DEFAULT_STATUS);
         tags = new HashSet<>();
     }
@@ -45,6 +44,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        rating = personToCopy.getRating();
         status = personToCopy.getStatus();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -62,6 +62,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRating(String rating) { // Added withRating method
+        this.rating = new Rating(rating);
         return this;
     }
 
@@ -90,7 +98,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, status, tags);
+        return new Person(name, phone, email, rating, status, tags);
     }
 
 }

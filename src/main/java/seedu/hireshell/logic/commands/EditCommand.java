@@ -1,11 +1,7 @@
 package seedu.hireshell.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.hireshell.logic.parser.CliSyntax.*;
 import static seedu.hireshell.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,11 +17,7 @@ import seedu.hireshell.commons.util.ToStringBuilder;
 import seedu.hireshell.logic.Messages;
 import seedu.hireshell.logic.commands.exceptions.CommandException;
 import seedu.hireshell.model.Model;
-import seedu.hireshell.model.person.Email;
-import seedu.hireshell.model.person.Name;
-import seedu.hireshell.model.person.Person;
-import seedu.hireshell.model.person.Phone;
-import seedu.hireshell.model.person.Status;
+import seedu.hireshell.model.person.*;
 import seedu.hireshell.model.tag.Tag;
 
 /**
@@ -42,10 +34,12 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
+            + PREFIX_RATING + "9.0 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -98,10 +92,11 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedRating, updatedStatus, updatedTags);
     }
 
     @Override
@@ -136,6 +131,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Rating rating;
         private Status status;
         private Set<Tag> tags;
 
@@ -149,6 +145,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setRating(toCopy.rating);
             setStatus(toCopy.status);
             setTags(toCopy.tags);
         }
@@ -157,7 +154,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, status, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, rating, status, tags);
         }
 
         public void setName(Name name) {
@@ -182,6 +179,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
         }
 
         public void setStatus(Status status) {
@@ -224,6 +229,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(rating, otherEditPersonDescriptor.rating)
                     && Objects.equals(status, otherEditPersonDescriptor.status)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
@@ -234,6 +240,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
+                    .add("rating", rating)
                     .add("status", status)
                     .add("tags", tags)
                     .toString();
