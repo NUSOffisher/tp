@@ -130,7 +130,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Role` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Role` object per unique role, instead of each `Person` needing their own `Role` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -304,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | recruiter      | edit a candidate’s details                                                                                      | update their information when it changes                                                |
 | `* *`    | recruiter      | see if a candidate is already in the database                                                                   | not waste time managing the same person twice                                           |
 | `* *`    | recruiter      | record last-contacted date                                                                                      | avoid letting candidates go cold                                                        |
-| `* *`    | recruiter      | assign custom tags to candidates                                                                                | know more about this candidate without reading a long file                              |
+| `* *`    | recruiter      | assign custom roles to candidates                                                                                | know more about this candidate without reading a long file                              |
 | `* *`    | recruiter      | use boolean-style search (AND/OR/NOT)                                                                           | build precise candidate lists without clicking filters                                  |
 | `* *`    | recruiter      | attach a link to a portfolio/LinkedIn/resume location                                                           | jump to supporting material quickly                                                     |
 | `* *`    | recruiter      | record the source of a candidate (referral, LinkedIn, event, inbound)                                           | evaluate sourcing channels                                                              |
@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | recruiter      | see a help command listing all available commands                                                               | learn how to use the system if I were to forget                                         |
 | `* * *`  | recruiter      | see warnings before any candidates are deleted                                                                  | not delete a bunch of candidates by accident                                            |
 | `*`      | expert user    | execute a "Mass Categorize" command                                                                             | move an entire group of candidates from one recruitment stage to another simultaneously |
-| `* *`    | recruiter      | be able to delete a group with specific tags (e.g. rejected)                                                    | not have to delete their contacts one by one                                            |
+| `* *`    | recruiter      | be able to delete a group with specific roles (e.g. rejected)                                                    | not have to delete their contacts one by one                                            |
 | `* * *`  | recruiter      | receive clear error messages when I enter invalid commands                                                      | correct mistakes easily                                                                 |
 | `* *`    | recruiter      | undo the previous command                                                                                       | reverse accidental actions                                                              |
 | `* *`    | recruiter      | add/navigate through the list using only the keyboard                                                           | keep my hands on my keyboard and save time                                              |
@@ -327,8 +327,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | recruiter      | define a contact “lifecycle” rule (e.g., archive after 90 days inactive)                                        | keep my database current with minimal effort                                            |
 | `* *`    | recruiter      | use command aliases (e.g., a for add, d for delete, e for edit)                                                 | type commands faster                                                                    |
 | `*`      | recruiter      | use tab-based auto-completion for commands and prefixes                                                         | not need to memorise full syntax                                                        |
-| `* *`    | recruiter      | find contacts using other fields (phone, email, tag, address)                                                   | retrieve someone even if I forget their name                                            |
-| `* * *`  | recruiter      | filter contacts by tag                                                                                          | group similar contacts easily                                                           |
+| `* *`    | recruiter      | find contacts using other fields (phone, email, role, address)                                                   | retrieve someone even if I forget their name                                            |
+| `* * *`  | recruiter      | filter contacts by role                                                                                          | group similar contacts easily                                                           |
 | `*`      | recruiter      | paste a messy block of text (email signature / LinkedIn snippet) and have fields auto-suggested                 | avoid manual retyping                                                                   |
 | `* *`    | recruiter      | use positional arguments for fast entry (e.g., add "John Doe" 91234567 [john@email.com](mailto:john@email.com)) | input data quickly                                                                      |
 | `*`      | recruiter      | view “recently modified” candidates                                                                             | resume work where I left off without remembering names                                  |
@@ -336,9 +336,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | recruiter      | view a history of recent actions                                                                                | track what changes were made                                                            |
 | `* *`    | recruiter      | click on a contact to view detailed information                                                                 | keep the main list clean and readable                                                   |
 | `*`      | recruiter      | see a preview of the contact being added before confirmation                                                    | verify details before committing                                                        |
-| `* * *`  | recruiter      | save the list of contacts automatically                                                                         | not lose progress if something unexpected happens (power outage)                        |
+| `* * *`  | recruiter      | save the list of contacts automatically                                                                         | not lose progress if something unexpected happens (power ourolee)                        |
 | `*`      | recruiter      | bulk-apply a “cooldown” status after rejection                                                                  | not accidentally re-contact too soon                                                    |
-| `* *`    | recruiter      | add or remove tags from multiple contacts at once                                                               | categorise people faster                                                                |
+| `* *`    | recruiter      | add or remove roles from multiple contacts at once                                                               | categorise people faster                                                                |
 | `*`      | recruiter      | record time zone and preferred contact hours                                                                    | make outreach more effective and less intrusive                                         |
 | `*`      | recruiter      | add custom CLI commands                                                                                         | type commands more efficiently                                                          |
 | `* *`    | recruiter      | mark a contact as favourite or important                                                                        | quickly find high-priority candidates                                                   |

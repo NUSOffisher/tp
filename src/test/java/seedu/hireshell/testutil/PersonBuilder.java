@@ -8,7 +8,7 @@ import seedu.hireshell.model.person.Email;
 import seedu.hireshell.model.person.Name;
 import seedu.hireshell.model.person.Person;
 import seedu.hireshell.model.person.Phone;
-import seedu.hireshell.model.tag.Tag;
+import seedu.hireshell.model.role.Role;
 import seedu.hireshell.model.util.SampleDataUtil;
 
 /**
@@ -25,7 +25,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Role> roles;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +35,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        roles = new HashSet<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        roles = new HashSet<>(personToCopy.getRoles());
     }
 
     /**
@@ -58,10 +58,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withRoles(String ... roles) {
+        this.roles = SampleDataUtil.getRoleSet(roles);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, roles);
     }
 
 }
