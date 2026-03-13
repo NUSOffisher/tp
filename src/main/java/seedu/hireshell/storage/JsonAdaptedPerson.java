@@ -15,6 +15,7 @@ import seedu.hireshell.model.person.Name;
 import seedu.hireshell.model.person.Person;
 import seedu.hireshell.model.person.Phone;
 import seedu.hireshell.model.person.Rating;
+import seedu.hireshell.model.person.ReferralStatus;
 import seedu.hireshell.model.person.Status;
 import seedu.hireshell.model.role.Role;
 
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final List<JsonAdaptedRole> roles = new ArrayList<>();
     private final String status;
+    private final String referralStatus;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +40,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("rating") String rating,
-            @JsonProperty("status") String status, @JsonProperty("roles") List<JsonAdaptedRole> roles) {
+                             @JsonProperty("status") String status,
+                             @JsonProperty("roles") List<JsonAdaptedRole> roles,
+                             @JsonProperty("referralStatus") String referralStatus) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +51,7 @@ class JsonAdaptedPerson {
         if (roles != null) {
             this.roles.addAll(roles);
         }
+        this.referralStatus = referralStatus;
     }
 
     /**
@@ -61,6 +66,7 @@ class JsonAdaptedPerson {
         roles.addAll(source.getRoles().stream()
                 .map(JsonAdaptedRole::new)
                 .collect(Collectors.toList()));
+        referralStatus = source.getReferralStatus().name();
     }
 
     /**
@@ -70,6 +76,7 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Role> personRoles = new ArrayList<>();
+        final ReferralStatus modelReferralStatus;
         for (JsonAdaptedRole role : roles) {
             personRoles.add(role.toModelType());
         }
@@ -115,7 +122,18 @@ class JsonAdaptedPerson {
         final Status modelStatus = new Status(status);
 
         final Set<Role> modelRoles = new HashSet<>(personRoles);
-        return new Person(modelName, modelPhone, modelEmail, modelRating, modelStatus, modelRoles);
+
+        if (referralStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ReferralStatus.class.getSimpleName()));
+        }
+        try {
+            modelReferralStatus = ReferralStatus.valueOf(referralStatus);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(ReferralStatus.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelRating, modelStatus, modelRoles, modelReferralStatus);
     }
 
 }

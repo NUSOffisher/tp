@@ -6,7 +6,8 @@ import static seedu.hireshell.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.hireshell.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.hireshell.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.hireshell.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.hireshell.logic.commands.CommandTestUtil.RATING_DESC_AMY; // Added import
+import static seedu.hireshell.logic.commands.CommandTestUtil.RATING_DESC_AMY;
+import static seedu.hireshell.logic.commands.CommandTestUtil.REFERRAL_STATUS_DESC_AMY;
 import static seedu.hireshell.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.hireshell.testutil.Assert.assertThrows;
 import static seedu.hireshell.testutil.TypicalPersons.AMY;
@@ -167,7 +168,7 @@ public class LogicManagerTest {
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + RATING_DESC_AMY + STATUS_DESC_AMY;
+                + EMAIL_DESC_AMY + RATING_DESC_AMY + STATUS_DESC_AMY + REFERRAL_STATUS_DESC_AMY;
 
         Person expectedPerson = new PersonBuilder(AMY).withRoles().build();
         ModelManager expectedModel = new ModelManager();

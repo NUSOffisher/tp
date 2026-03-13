@@ -8,6 +8,7 @@ import seedu.hireshell.model.person.Name;
 import seedu.hireshell.model.person.Person;
 import seedu.hireshell.model.person.Phone;
 import seedu.hireshell.model.person.Rating;
+import seedu.hireshell.model.person.ReferralStatus;
 import seedu.hireshell.model.person.Status;
 import seedu.hireshell.model.role.Role;
 import seedu.hireshell.model.util.SampleDataUtil;
@@ -21,7 +22,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_RATING = "5.0";
-    public static final String DEFAULT_STATUS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STATUS = "Pending";
+
 
     private Name name;
     private Phone phone;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Rating rating;
     private Set<Role> roles;
     private Status status;
+    private ReferralStatus referralStatus;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PersonBuilder {
         rating = new Rating(DEFAULT_RATING);
         roles = new HashSet<>();
         status = new Status(DEFAULT_STATUS);
+        referralStatus = ReferralStatus.NOT_REFERRED;
     }
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         rating = personToCopy.getRating();
         roles = new HashSet<>(personToCopy.getRoles());
         status = personToCopy.getStatus();
+        referralStatus = personToCopy.getReferralStatus();
     }
 
     /**
@@ -102,8 +107,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ReferralStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withReferralStatus(ReferralStatus referralStatus) {
+        this.referralStatus = referralStatus;
+        return this;
+    }
+
+    /**
+     * Optional convenience method to set referral status via string "yes"/"no".
+     */
+    public PersonBuilder withReferralStatus(String referralStatusString) {
+        this.referralStatus = ReferralStatus.fromString(referralStatusString);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, rating, status, roles);
+        return new Person(name, phone, email, rating, status, roles, referralStatus);
     }
 
 }

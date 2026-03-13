@@ -4,6 +4,7 @@ import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_REFERRAL_STATUS;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_STATUS;
 
@@ -36,6 +37,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_RATING).append(person.getRating().value).append(" ");
         sb.append(PREFIX_STATUS + person.getStatus().value + " ");
+        sb.append(PREFIX_REFERRAL_STATUS + person.getReferralStatus().toString() + " ");
         person.getRoles().stream().forEach(
             s -> sb.append(PREFIX_ROLE + s.roleName + " ")
         );
@@ -52,6 +54,8 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getRating().ifPresent(rating -> sb.append(PREFIX_RATING).append(rating.value).append(" "));
         descriptor.getStatus().ifPresent(address -> sb.append(PREFIX_STATUS).append(address.value).append(" "));
+        descriptor.getReferralStatus().ifPresent(referralStatus -> sb.append(PREFIX_REFERRAL_STATUS)
+                .append(referralStatus.toString()).append(" "));
         if (descriptor.getRoles().isPresent()) {
             Set<Role> roles = descriptor.getRoles().get();
             if (roles.isEmpty()) {

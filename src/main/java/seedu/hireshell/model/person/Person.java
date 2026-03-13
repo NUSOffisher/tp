@@ -25,18 +25,21 @@ public class Person {
     private final Rating rating;
     private final Status status;
     private final Set<Role> roles = new HashSet<>();
+    private final ReferralStatus referralStatus;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Rating rating, Status status, Set<Role> roles) {
-        requireAllNonNull(name, phone, email, status, roles);
+    public Person(Name name, Phone phone, Email email, Rating rating, Status status, Set<Role> roles,
+                  ReferralStatus referralStatus) {
+        requireAllNonNull(name, phone, email, status, roles, referralStatus);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.rating = rating;
         this.status = status;
         this.roles.addAll(roles);
+        this.referralStatus = referralStatus;
     }
 
     public Name getName() {
@@ -65,6 +68,10 @@ public class Person {
      */
     public Set<Role> getRoles() {
         return Collections.unmodifiableSet(roles);
+    }
+
+    public ReferralStatus getReferralStatus() {
+        return referralStatus;
     }
 
     /**
@@ -101,13 +108,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && rating.equals(otherPerson.rating)
                 && status.equals(otherPerson.status)
-                && roles.equals(otherPerson.roles);
+                && roles.equals(otherPerson.roles)
+                && referralStatus.equals(otherPerson.referralStatus);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, rating, status, roles);
+        return Objects.hash(name, phone, email, rating, status, roles, referralStatus);
     }
 
     @Override
@@ -119,7 +127,7 @@ public class Person {
                 .add("rating", rating)
                 .add("status", status)
                 .add("roles", roles)
+                .add("referralStatus", referralStatus)
                 .toString();
     }
-
 }

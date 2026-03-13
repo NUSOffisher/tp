@@ -13,6 +13,7 @@ import seedu.hireshell.model.person.Email;
 import seedu.hireshell.model.person.Name;
 import seedu.hireshell.model.person.Phone;
 import seedu.hireshell.model.person.Rating;
+import seedu.hireshell.model.person.ReferralStatus;
 import seedu.hireshell.model.person.Status;
 import seedu.hireshell.model.role.Role;
 
@@ -136,5 +137,24 @@ public class ParserUtil {
             roleSet.add(parseRole(roleName));
         }
         return roleSet;
+    }
+
+    /**
+     * Parses a {@code String} into a {@code ReferralStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param referralStatus The referral status string to parse.
+     * @return The corresponding {@code ReferralStatus}.
+     * @throws ParseException if the given {@code referralStatus} is invalid.
+     */
+    public static ReferralStatus parseReferralStatus(String referralStatus) throws ParseException {
+        requireNonNull(referralStatus);
+        String trimmedReferralStatus = referralStatus.trim().toLowerCase();
+
+        if (!ReferralStatus.isValidReferralStatus(trimmedReferralStatus)) {
+            throw new ParseException(ReferralStatus.MESSAGE_CONSTRAINTS);
+        }
+
+        return ReferralStatus.fromString(trimmedReferralStatus);
     }
 }

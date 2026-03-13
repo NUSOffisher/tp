@@ -6,6 +6,7 @@ import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_REFERRAL_STATUS;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_STATUS;
 
@@ -34,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_STATUS, PREFIX_ROLE);
+                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_STATUS, PREFIX_ROLE, PREFIX_REFERRAL_STATUS);
 
         Index index;
 
@@ -64,6 +65,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setStatus(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_STATUS).get()));
         }
         parseRolesForEdit(argMultimap.getAllValues(PREFIX_ROLE)).ifPresent(editPersonDescriptor::setRoles);
+
+        if (argMultimap.getValue(PREFIX_REFERRAL_STATUS).isPresent()) {
+            editPersonDescriptor.setReferralStatus(ParserUtil.parseReferralStatus(argMultimap
+                    .getValue(PREFIX_REFERRAL_STATUS).get()));
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

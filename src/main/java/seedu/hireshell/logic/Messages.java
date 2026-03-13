@@ -45,6 +45,8 @@ public class Messages {
                 .append(person.getRating())
                 .append("; Status: ")
                 .append(person.getStatus())
+                .append("; ReferralStatus: ")
+                .append(person.getReferralStatus())
                 .append("; Roles: ");
         person.getRoles().forEach(builder::append);
         return builder.toString();

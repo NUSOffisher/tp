@@ -5,6 +5,7 @@ import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_REFERRAL_STATUS;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_STATUS;
 
@@ -18,6 +19,7 @@ import seedu.hireshell.model.person.Name;
 import seedu.hireshell.model.person.Person;
 import seedu.hireshell.model.person.Phone;
 import seedu.hireshell.model.person.Rating;
+import seedu.hireshell.model.person.ReferralStatus;
 import seedu.hireshell.model.person.Status;
 import seedu.hireshell.model.role.Role;
 
@@ -34,22 +36,26 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_STATUS, PREFIX_ROLE);
+                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_STATUS, PREFIX_ROLE, PREFIX_REFERRAL_STATUS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STATUS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_RATING)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STATUS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_RATING,
+                PREFIX_REFERRAL_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_RATING, PREFIX_STATUS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_RATING, PREFIX_STATUS,
+                PREFIX_REFERRAL_STATUS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
         Status status = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_STATUS).get());
         Set<Role> roleList = ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
+        ReferralStatus referralStatus = ParserUtil.parseReferralStatus(argMultimap
+                .getValue(PREFIX_REFERRAL_STATUS).get());
 
-        Person person = new Person(name, phone, email, rating, status, roleList);
+        Person person = new Person(name, phone, email, rating, status, roleList, referralStatus);
 
         return new AddCommand(person);
     }
