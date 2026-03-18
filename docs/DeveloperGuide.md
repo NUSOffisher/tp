@@ -327,13 +327,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | recruiter      | define a contact “lifecycle” rule (e.g., archive after 90 days inactive)                                        | keep my database current with minimal effort                                            |
 | `* *`    | recruiter      | use command aliases (e.g., a for add, d for delete, e for edit)                                                 | type commands faster                                                                    |
 | `*`      | recruiter      | use tab-based auto-completion for commands and prefixes                                                         | not need to memorise full syntax                                                        |
-<<<<<<< HEAD
 | `* *`    | recruiter      | find contacts using other fields (phone, email, role, address)                                                   | retrieve someone even if I forget their name                                            |
 | `* * *`  | recruiter      | filter contacts by role                                                                                          | group similar contacts easily                                                           |
-=======
 | `* *`    | recruiter      | find contacts using other fields (phone, email, tag, status)                                                   | retrieve someone even if I forget their name                                            |
 | `* * *`  | recruiter      | filter contacts by tag                                                                                          | group similar contacts easily                                                           |
->>>>>>> master
 | `*`      | recruiter      | paste a messy block of text (email signature / LinkedIn snippet) and have fields auto-suggested                 | avoid manual retyping                                                                   |
 | `* *`    | recruiter      | use positional arguments for fast entry (e.g., add "John Doe" 91234567 [john@email.com](mailto:john@email.com)) | input data quickly                                                                      |
 | `*`      | recruiter      | view “recently modified” candidates                                                                             | resume work where I left off without remembering names                                  |
