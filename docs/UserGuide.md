@@ -18,9 +18,9 @@ HireShell is a **desktop app for managing contacts, optimized for use via a  Lin
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-T10-3/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-T10-3/tp/releases).
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
 
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
