@@ -146,8 +146,9 @@ public class CommandBox extends UiPart<Region> {
         if (commandHistoryIndex >= commandHistory.size()) {
             logger.info("navigateHistoryDown: Reached latest command, restored latest command: " + latestCommand);
             commandTextField.setText(latestCommand);
+            assert latestCommand.equals(commandTextField.getText()) : "navigateHistoryDown: commandTextField.getText() "
+                    + "should return to the latest command";
             commandHistoryIndex = -1;
-            assert commandHistoryIndex == -1 : "commandHistoryIndex should be -1 after reaching latest command";
         } else {
             commandTextField.setText(commandHistory.get(commandHistoryIndex));
         }
