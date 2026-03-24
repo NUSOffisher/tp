@@ -33,12 +33,14 @@ public class SortCommandParserTest {
 
     @Test
     public void parse_invalidOrder_throwsParseException() {
-        assertParseFailure(parser, " " + PREFIX_RATING + "foo", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " " + PREFIX_RATING + "foo",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_noValue_throwsParseException() {
-        assertParseFailure(parser, " " + PREFIX_RATING, String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " " + PREFIX_RATING,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
     @Test

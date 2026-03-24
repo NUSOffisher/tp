@@ -42,11 +42,13 @@ public class FilterCommandParserTest {
                 new RatingFilter(RatingFilter.Operator.LESS_THAN, 5.5),
                 "Rejected");
         FilterCommand expectedFilterCommandBoth = new FilterCommand(predicateBoth);
-        assertParseSuccess(parser, " " + PREFIX_RATING + "< 5.5 " + PREFIX_STATUS + "Rejected", expectedFilterCommandBoth);
+        assertParseSuccess(parser, " " + PREFIX_RATING + "< 5.5 " + PREFIX_STATUS + "Rejected",
+                expectedFilterCommandBoth);
     }
 
     @Test
     public void parse_invalidRating_throwsParseException() {
-        assertParseFailure(parser, " " + PREFIX_RATING + ">= abc", "Ratings should be a number between 0 and 10 (decimals allowed).");
+        assertParseFailure(parser, " " + PREFIX_RATING + ">= abc",
+                "Ratings should be a number between 0 and 10 (decimals allowed).");
     }
 }
