@@ -23,19 +23,35 @@ public class FilterCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFilterCommand() {
-        // rating only
-        PersonMatchesFiltersPredicate predicateRating = new PersonMatchesFiltersPredicate(
-                new RatingFilter(RatingFilter.Operator.GREATER_THAN_OR_EQUAL, 7.0),
-                null);
-        FilterCommand expectedFilterCommandRating = new FilterCommand(predicateRating);
-        assertParseSuccess(parser, " " + PREFIX_RATING + ">= 7", expectedFilterCommandRating);
+        // rating only, various operators
+        assertParseSuccess(parser, " " + PREFIX_RATING + ">= 7",
+                new FilterCommand(new PersonMatchesFiltersPredicate(
+                        new RatingFilter(RatingFilter.Operator.GREATER_THAN_OR_EQUAL, 7.0), null)));
+
+        assertParseSuccess(parser, " " + PREFIX_RATING + "> 7",
+                new FilterCommand(new PersonMatchesFiltersPredicate(
+                        new RatingFilter(RatingFilter.Operator.GREATER_THAN, 7.0), null)));
+
+        assertParseSuccess(parser, " " + PREFIX_RATING + "< 5",
+                new FilterCommand(new PersonMatchesFiltersPredicate(
+                        new RatingFilter(RatingFilter.Operator.LESS_THAN, 5.0), null)));
+
+        assertParseSuccess(parser, " " + PREFIX_RATING + "<= 5",
+                new FilterCommand(new PersonMatchesFiltersPredicate(
+                        new RatingFilter(RatingFilter.Operator.LESS_THAN_OR_EQUAL, 5.0), null)));
+
+        assertParseSuccess(parser, " " + PREFIX_RATING + "== 8.5",
+                new FilterCommand(new PersonMatchesFiltersPredicate(
+                        new RatingFilter(RatingFilter.Operator.EQUAL, 8.5), null)));
+
+        // default operator (equal)
+        assertParseSuccess(parser, " " + PREFIX_RATING + " 8.5",
+                new FilterCommand(new PersonMatchesFiltersPredicate(
+                        new RatingFilter(RatingFilter.Operator.EQUAL, 8.5), null)));
 
         // status only
-        PersonMatchesFiltersPredicate predicateStatus = new PersonMatchesFiltersPredicate(
-                null,
-                "Interviewing");
-        FilterCommand expectedFilterCommandStatus = new FilterCommand(predicateStatus);
-        assertParseSuccess(parser, " " + PREFIX_STATUS + "Interviewing", expectedFilterCommandStatus);
+        assertParseSuccess(parser, " " + PREFIX_STATUS + "Interviewing",
+                new FilterCommand(new PersonMatchesFiltersPredicate(null, "Interviewing")));
 
         // both rating and status
         PersonMatchesFiltersPredicate predicateBoth = new PersonMatchesFiltersPredicate(
@@ -48,7 +64,18 @@ public class FilterCommandParserTest {
 
     @Test
     public void parse_invalidRating_throwsParseException() {
+        // invalid rating value
         assertParseFailure(parser, " " + PREFIX_RATING + ">= abc",
                 "Ratings should be a number between 0 and 10 (decimals allowed).");
+
+        // rating value out of range
+        assertParseFailure(parser, " " + PREFIX_RATING + " 11",
+                "Ratings should be a number between 0 and 10 (decimals allowed).");
+    }
+
+    @Test
+    public void parse_multiplePrefixes_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_RATING + ">= 5 " + PREFIX_RATING + "< 8",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
     }
 }

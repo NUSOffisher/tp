@@ -19,6 +19,7 @@ import seedu.hireshell.logic.commands.DeleteCommand;
 import seedu.hireshell.logic.commands.EditCommand;
 import seedu.hireshell.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.hireshell.logic.commands.ExitCommand;
+import seedu.hireshell.logic.commands.FilterCommand;
 import seedu.hireshell.logic.commands.FindCommand;
 import seedu.hireshell.logic.commands.HelpCommand;
 import seedu.hireshell.logic.commands.ListCommand;
@@ -75,6 +76,12 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " rt/ >= 5") instanceof FilterCommand);
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " s/interview") instanceof FilterCommand);
     }
 
     @Test
