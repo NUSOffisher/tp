@@ -134,6 +134,36 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Filtering persons by rating or status: `filter`
+
+Filters persons whose rating and/or status match the specified criteria.
+
+Format: `filter [rt/RATING_FILTER] [s/STATUS]`
+
+* At least one of the optional fields must be provided.
+* `RATING_FILTER` can include a comparison operator (`>`, `>=`, `<`, `<=`, `==`) followed by a number. If no operator is provided, `==` is assumed.
+* `STATUS` matches the status field of the person (case-insensitive).
+* If both rating and status are provided, only persons matching both criteria will be shown.
+
+Examples:
+* `filter rt/ >= 7` returns persons with a rating of 7.0 or higher.
+* `filter s/Interviewing` returns persons whose status is "Interviewing".
+* `filter rt/ < 5 s/Rejected` returns persons with a rating less than 5.0 and a status of "Rejected".
+
+### Sorting persons by rating: `sort`
+
+Sorts the currently displayed list of persons by their rating.
+
+Format: `sort rt/ORDER`
+
+* `ORDER` must be either `asc` (for ascending order) or `desc` (for descending order).
+* `asc` sorts persons from the lowest rating to the highest.
+* `desc` sorts persons from the highest rating to the lowest.
+
+Examples:
+* `sort rt/asc`
+* `sort rt/desc`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -203,6 +233,8 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com rt/9.0`
+**Filter** | `filter [rt/RATING_FILTER] [s/STATUS]` <br> e.g., `filter rt/ >= 7 s/Interviewing`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**Sort**   | `sort rt/ORDER` <br> e.g., `sort rt/desc`
 **Help**   | `help`
