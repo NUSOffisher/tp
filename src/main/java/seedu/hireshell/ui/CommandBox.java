@@ -2,11 +2,13 @@ package seedu.hireshell.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.hireshell.commons.core.LogsCenter;
 import seedu.hireshell.logic.commands.CommandResult;
 import seedu.hireshell.logic.commands.exceptions.CommandException;
 import seedu.hireshell.logic.parser.exceptions.ParseException;
@@ -23,6 +25,8 @@ public class CommandBox extends UiPart<Region> {
     private final List<String> commandHistory = new ArrayList<>();
     private int commandHistoryIndex = -1;
     private String latestCommand = "";
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final CommandExecutor commandExecutor;
 
@@ -102,16 +106,19 @@ public class CommandBox extends UiPart<Region> {
      */
     private void navigateHistoryUp() {
         if (commandHistory.isEmpty()) {
+            logger.info("navigateHistoryUp: No command history");
             return;
         }
 
         if (commandHistoryIndex == -1) {
             latestCommand = commandTextField.getText();
             commandHistoryIndex = commandHistory.size();
+            logger.info("navigateHistoryUp: First navigation up, saved latest command: " + latestCommand);
         }
 
         commandHistoryIndex--;
         if (commandHistoryIndex < 0) {
+            logger.info("navigateHistoryUp: Reached end of command history");
             commandHistoryIndex = 0;
         }
 
@@ -137,8 +144,10 @@ public class CommandBox extends UiPart<Region> {
 
         commandHistoryIndex++;
         if (commandHistoryIndex >= commandHistory.size()) {
+            logger.info("navigateHistoryDown: Reached latest command, restored latest command: " + latestCommand);
             commandTextField.setText(latestCommand);
             commandHistoryIndex = -1;
+            assert commandHistoryIndex == -1 : "commandHistoryIndex should be -1 after reaching latest command";
         } else {
             commandTextField.setText(commandHistory.get(commandHistoryIndex));
         }
