@@ -1,8 +1,10 @@
 package seedu.hireshell.ui;
 
+import java.util.function.BiConsumer;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,13 +41,25 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private TableColumn<Person, String> referralColumn;
 
+    private final BiConsumer<Person, Integer> onPersonSelected;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, BiConsumer<Person, Integer> onPersonSelected) {
         super(FXML);
+        this.onPersonSelected = onPersonSelected;
         setupTable();
         personTableView.setItems(personList);
+
+        personTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            int selectedIndex = personTableView.getSelectionModel().getSelectedIndex() + 1;
+            logger.info("User clicked on candidate index: " + selectedIndex);
+
+            if (this.onPersonSelected != null) {
+                this.onPersonSelected.accept(newValue, selectedIndex);
+            }
+        });
     }
 
     /**
@@ -89,5 +103,20 @@ public class PersonListPanel extends UiPart<Region> {
         // 8. Referral Column
         referralColumn.setCellValueFactory(cellData ->
                 new ReadOnlyStringWrapper(cellData.getValue().getReferralStatus().toString()));
+
+        personTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        // Setting the widths of each column
+        NumberBinding dynamicColumnWidth = personTableView.widthProperty()
+                .subtract(idColumn.widthProperty())
+                .subtract(ratingColumn.widthProperty())
+                .subtract(contactColumn.widthProperty())
+                .subtract(referralColumn.widthProperty())
+                .subtract(30)
+                .divide(4);
+
+        nameColumn.prefWidthProperty().bind(dynamicColumnWidth);
+        roleColumn.prefWidthProperty().bind(dynamicColumnWidth);
+        statusColumn.prefWidthProperty().bind(dynamicColumnWidth);
+        emailColumn.prefWidthProperty().bind(dynamicColumnWidth);
     }
 }
