@@ -15,9 +15,11 @@ import seedu.hireshell.logic.commands.DeleteCommand;
 import seedu.hireshell.logic.commands.EditCommand;
 import seedu.hireshell.logic.commands.ExitCommand;
 import seedu.hireshell.logic.commands.ExportCommand;
+import seedu.hireshell.logic.commands.FilterCommand;
 import seedu.hireshell.logic.commands.FindCommand;
 import seedu.hireshell.logic.commands.HelpCommand;
 import seedu.hireshell.logic.commands.ListCommand;
+import seedu.hireshell.logic.commands.SortCommand;
 import seedu.hireshell.logic.parser.exceptions.ParseException;
 
 /**
@@ -68,6 +70,12 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
