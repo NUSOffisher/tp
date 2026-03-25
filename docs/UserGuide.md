@@ -190,13 +190,16 @@ _Details coming soon ..._
 **A**: Yes! Your data is stored locally in the data folder. This ensures that sensitive information will not be leaked!
 
 **Q**: Why is HireShell not starting for me?<br>
-**A**: Ensure that you have Java 17 installed on your computer. Enter 'java -version' in your system terminal to check the version that you have!
+**A**: Ensure that you have [Java 17](#quick-start) installed on your computer. Enter `java -version` in your system terminal to check the version that you have!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HireShell home folder.
 
 **Q**: How do I export my data?<br>
-**A**: This feature has not been implemented yet.
+**A**: Data can be exported using the command `export`, which creates a `.csv` file.
+
+**Q**: How do I import my data?<br>
+**A**: This feature has not been implemented yet, but will be in subsequent versions.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -209,12 +212,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL rt/RATING s/STATUS rs/REFERRAL_STATUS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com rt/8.5 s/Approved rs/Yes r/SoftwareEngineer`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com rt/9.0`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action                                    | Format, Examples                                                                                                                                                                            |
+|-------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[Add](#adding-a-person-add)**           | `add n/NAME p/PHONE_NUMBER e/EMAIL rt/RATING s/STATUS rs/REFERRAL_STATUS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com rt/8.5 s/Approved rs/Yes r/SoftwareEngineer` |
+| **[Clear](#clearing-all-entries--clear)** | `clear`                                                                                                                                                                                     |
+| **[Delete](#deleting-a-person--delete)**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                         |
+| **[Edit](#editing-a-person--edit)**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com rt/9.0`                         |
+| **[Find](#locating-persons-by-name-find)** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                  |
+| **[List](#listing-all-persons--list)**    | `list`                                                                                                                                                                                      |
+| **[Help](#viewing-help--help)**           | `help`                                                                                                                                                                                      |
