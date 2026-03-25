@@ -112,7 +112,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add  n/NAME p/PHONE e/EMAIL rt/RATING s/STATUS rs/REFERRAL_STATUS [r/ROLE]…​`
+Format: `add  n/NAME p/PHONE e/EMAIL [rt/RATING] s/STATUS rs/REFERRAL_STATUS [r/ROLE] [d/DETAIL]…​`
 
 <box type="tip" seamless>
 
@@ -120,8 +120,10 @@ Format: `add  n/NAME p/PHONE e/EMAIL rt/RATING s/STATUS rs/REFERRAL_STATUS [r/RO
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com rt/8.5 s/Approved rs/Yes`
+* `add n/John Doe p/98765432 e/johnd@example.com s/Approved rs/Yes`
 * `add n/Betsy Crowe e/betsycrowe@example.com rt/9 s/Fresh rs/Yes p/91234567 r/SoftwareEngineer r/QuantitativeResearcher`
+* `add n/Alex Yeoh p/12345678 e/alexy@example.com s/Approved rs/Yes d/Met at career fair`
+
 
 ### Listing all persons : `list`
 
@@ -133,7 +135,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE] [d/DETAIL]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -254,6 +256,20 @@ Exits the program.
 
 Format: `exit`
 
+### Exporting data : `export`
+
+Exports all contact data from the address book into a CSV file format, which can be opened in spreadsheet applications like Microsoft Excel or Google Sheets.
+
+Format: `export`
+
+* The command exports the entire list of persons currently stored in the address book.
+* Extraneous parameters for this command (e.g., `export 123`) will be ignored.
+* The data is typically saved in the same directory where the application is located.
+
+Example:
+* `export`
+
+
 ### Saving the data
 
 HireShell data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -319,3 +335,4 @@ _Details coming soon ..._
 | **[List](#listing-all-persons-list)**                | `list`                                                                                                                                                                                      |
 | **[Sort](#sorting-persons-by-rating-sort)**          | `sort rt/ORDER` <br> e.g., `sort rt/desc`                                                                                                                                                   |
 | **[Help](#viewing-help-help)**                       | `help`                                                                                                                                                                                      |
+| **[Export](#exporting-data-export)**                        | `export`                                                                                                                                                                                    |
