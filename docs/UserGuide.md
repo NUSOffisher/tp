@@ -6,14 +6,14 @@ pageNav: 3
 
 # HireShell
 
-HireShell is a **desktop contact management application** designed for **Job Recruiters** who prefer **speed and efficiency** 
-in managing (e.g. adding, deleting, editing) a large number of applicant contacts. It combines a Command Line Interface 
+HireShell is a **desktop contact management application** designed for **Job Recruiters** who prefer **speed and efficiency**
+in managing (e.g. adding, deleting, editing) a large number of applicant contacts. It combines a Command Line Interface
 (CLI) with the clarity of a Graphical User Interface (GUI).
 
-If you are a Job Recruiter and are comfortable typing commands fast, HireShell helps you to organise, categorise and 
+If you are a Job Recruiter and are comfortable typing commands fast, HireShell helps you to organise, categorise and
 filter applicant contacts quickly, with minimal use of a mouse.
 
-Instead of clicking through multiple menus, you can perform all actions using simple, structured commands. 
+Instead of clicking through multiple menus, you can perform all actions using simple, structured commands.
 This lets you manage and review applicants more efficiently once you are familiar with the command format.
 
 **What you can expect**\
@@ -42,14 +42,14 @@ In this guide, you will find:
 
 5. Open a command terminal and navigate to the **HireShell** folder.
    - **Windows:** Use Command Prompt or PowerShell
-   - **Mac/Linux:** Use Terminal 
+   - **Mac/Linux:** Use Terminal
 
-Example: 
+Example:
 ```bash
 cd path/to/HireShell
 ```
 
-6. Run the application using the following command: 
+6. Run the application using the following command:
 ```
 java -jar hireshell.jar
 ```
@@ -277,8 +277,23 @@ _Details coming soon ..._
 
 ## FAQ
 
+**Q**: Is my data saved automatically?<br>
+**A**: Yes, HireShell saves your data automatically. There is no need to manually save!
+
+**Q**: Is my data safe?<br>
+**A**: Yes! Your data is stored locally in the data folder. This ensures that sensitive information will not be leaked!
+
+**Q**: Why is HireShell not starting for me?<br>
+**A**: Ensure that you have [Java 17](#quick-start) installed on your computer. Enter `java -version` in your system terminal to check the version that you have!
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HireShell home folder.
+
+**Q**: How do I export my data?<br>
+**A**: Data can be exported using the command `export`, which creates a `.csv` file.
+
+**Q**: How do I import my data?<br>
+**A**: This feature has not been implemented yet, but will be in subsequent versions.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -291,16 +306,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL rt/RATING s/STATUS rs/REFERRAL_STATUS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com rt/8.5 s/Approved rs/Yes r/SoftwareEngineer`
-**Batch Delete** | `batch delete [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION]`<br> e.g., `batch delete rt/< 3.0 s/REJECTED`
-**Batch Edit** | `batch edit [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION] to [EDIT_FIELDS]`<br> e.g., `batch edit r/Intern to s/REJECTED`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com rt/9.0`
-**Filter** | `filter [rt/RATING_FILTER] [s/STATUS]` <br> e.g., `filter rt/ >= 7 s/Interviewing`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Sort**   | `sort rt/ORDER` <br> e.g., `sort rt/desc`
-**Help**   | `help`
+| Action                                                      | Format, Examples                                                                                                                                                                            |
+|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[Add](#adding-a-person-add)**                             | `add n/NAME p/PHONE_NUMBER e/EMAIL rt/RATING s/STATUS rs/REFERRAL_STATUS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com rt/8.5 s/Approved rs/Yes r/SoftwareEngineer` |
+| **[Batch Delete](#batch-deleting-persons--batch-delete)**   | `batch delete [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION]`<br> e.g., `batch delete rt/< 3.0 s/REJECTED`                                                                                    |
+| **[Batch Edit](#batch-editing-persons--batch-edit)**        | `batch edit [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION] to [EDIT_FIELDS]`<br> e.g., `batch edit r/Intern to s/REJECTED`                                                                    |
+| **[Clear](#clearing-all-entries--clear)**                   | `clear`                                                                                                                                                                                     |
+| **[Delete](#deleting-a-person--delete)**                    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                         |
+| **[Edit](#editing-a-person--edit)**                         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com rt/9.0`                         |
+| **[Filter](#filtering-persons-by-rating-or-status-filter)** | `filter [rt/RATING_FILTER] [s/STATUS]` <br> e.g., `filter rt/ >= 7 s/Interviewing`                                                                                                          |
+| **[Find](#locating-persons-by-name-find)**                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                  |
+| **[List](#listing-all-persons--list)**                      | `list`                                                                                                                                                                                      |
+| **[Sort](#sorting-persons-by-rating-sort)**                 | `sort rt/ORDER` <br> e.g., `sort rt/desc`                                                                                                                                                   |
+| **[Help](#viewing-help--help)**                             | `help`                                                                                                                                                                                      |
