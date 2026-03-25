@@ -208,6 +208,40 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Batch deleting persons : `batch delete`
+
+Deletes all persons in the address book whose attributes match the specified condition(s). You can specify conditions based on status, roles, and a mathematical rating comparison.
+
+Format: `batch delete [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION]`
+
+* Deletes everyone matching **ALL** provided conditions.
+* At least one condition must be specified.
+* `RATING_CONDITION` must start with a valid mathematical operator (`<`, `<=`, `>`, `>=`, `==`) followed immediately by the rating value (e.g., `< 3.0` or `>= 5`).
+* If multiple roles are provided, it will find persons who have **all** the listed roles.
+
+Examples:
+* `batch delete s/REJECTED` deletes all persons with a status of REJECTED.
+* `batch delete rt/< 3.0` deletes all persons whose rating is strictly less than 3.0.
+* `batch delete s/APPLIED rt/<= 2.0 r/Intern` deletes all persons applying for an Intern role, currently APPLIED, and having a rating of 2.0 or lower.
+
+### Batch editing persons : `batch edit`
+
+Edits all persons in the address book whose attributes match the specified condition(s). The input is separated by the `to` keyword, where the left side dictates the filters and the right side dictates the edits to apply.
+
+Format: `batch edit [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION] to [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]...`
+
+* Edits everyone matching **ALL** the filter conditions specified on the left of `to`.
+* Applies the exact exact new values provided on the right of `to`.
+* The rating condition works exactly as it does in `batch delete`.
+* At least one condition must be provided on the left side, and at least one edit field must be provided on the right side.
+* If a person is updated in a way that causes their details to exactly match an already existing person (ignoring roles/statuses), an error will be thrown to prevent duplicate persons.
+
+Examples:
+* `batch edit r/Intern to s/REJECTED` changes the status to REJECTED for all persons who have the "Intern" role.
+* `batch edit s/APPLIED to rt/5.0` sets the rating to 5.0 for everyone who currently has an APPLIED status.
+* `batch edit rt/< 3.0 s/APPLIED to s/REJECTED rt/0.0 rs/Unsuccessful` finds anyone who is APPLIED with a rating < 3.0, and simultaneously changes their status to REJECTED, rating to 0.0, and referral status to Unsuccessful.
+* `batch edit r/Frontend rt/> 8.0 to r/Frontend Lead s/INTERVIEWED` finds anyone with a Frontend role and a rating > 8.0, and updates their role to Frontend Lead and status to INTERVIEWED.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -260,6 +294,8 @@ _Details coming soon ..._
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL rt/RATING s/STATUS rs/REFERRAL_STATUS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com rt/8.5 s/Approved rs/Yes r/SoftwareEngineer`
+**Batch Delete** | `batch delete [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION]`<br> e.g., `batch delete rt/< 3.0 s/REJECTED`
+**Batch Edit** | `batch edit [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION] to [EDIT_FIELDS]`<br> e.g., `batch edit r/Intern to s/REJECTED`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com rt/9.0`
