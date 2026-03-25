@@ -277,8 +277,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * Meets a lot of new people daily
 * Has a large number of contacts with a short lifecycle
 * Enjoys using keyboard shortcuts
-* Needs to categorise their contacts 
-* Works in an office, uses a desktop 
+* Needs to categorise their contacts
+* Works in an office, uses a desktop
 * Values efficiency and speed over user interface 
 * Frequently performs batch operations (e.g. deleting a whole group)
 
