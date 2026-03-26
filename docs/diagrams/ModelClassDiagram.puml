@@ -19,6 +19,9 @@ Class Email
 Class Name
 Class Phone
 Class Role
+Class Rating
+Class ReferralStatus
+Class Details
 
 Class I #FFFFFF
 }
@@ -41,6 +44,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Status
+Person *--> Rating
+Person *--> ReferralStatus
+Person *--> Details
 Person *--> "*" Role
 
 Person -[hidden]up--> I
@@ -49,6 +55,9 @@ UniquePersonList -[hidden]right-> I
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Status
 Status -[hidden]right-> Email
+Email -[hidden]right-> Rating
+Rating -[hidden]right-> ReferralStatus
+ReferralStatus -[hidden]right-> Details
 
 ModelManager --> "~* filtered" Person
 @enduml
