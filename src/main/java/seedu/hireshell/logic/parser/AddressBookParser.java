@@ -86,6 +86,15 @@ public class AddressBookParser {
             return new HelpCommand();
 
         default:
+            if (commandWord.equals("batch")) {
+                String trimmedArgs = arguments.trim();
+                if (trimmedArgs.startsWith("delete")) {
+                    return new BatchDeleteCommandParser().parse(trimmedArgs.replaceFirst("delete", ""));
+                } else if (trimmedArgs.startsWith("edit")) {
+                    return new BatchEditCommandParser().parse(trimmedArgs.replaceFirst("edit", ""));
+                }
+            }
+
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.hireshell.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.hireshell.model.person.Details;
 import seedu.hireshell.model.person.Email;
 import seedu.hireshell.model.person.Name;
 import seedu.hireshell.model.person.Person;
@@ -89,6 +90,14 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withRoles(String... roles) {
         Set<Role> roleSet = Stream.of(roles).map(Role::new).collect(Collectors.toSet());
         descriptor.setRoles(roleSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Details} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDetails(String details) {
+        descriptor.setDetails(new Details(details));
         return this;
     }
 
