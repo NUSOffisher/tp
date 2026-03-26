@@ -14,6 +14,7 @@ import seedu.hireshell.logic.commands.Command;
 import seedu.hireshell.logic.commands.DeleteCommand;
 import seedu.hireshell.logic.commands.EditCommand;
 import seedu.hireshell.logic.commands.ExitCommand;
+import seedu.hireshell.logic.commands.ExportCommand;
 import seedu.hireshell.logic.commands.FilterCommand;
 import seedu.hireshell.logic.commands.FindCommand;
 import seedu.hireshell.logic.commands.HelpCommand;
@@ -84,6 +85,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommand();
 
         default:
             if (commandWord.equals("batch")) {
