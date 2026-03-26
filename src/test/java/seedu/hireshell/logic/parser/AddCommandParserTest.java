@@ -61,7 +61,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withRoles(VALID_ROLE_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withRoles(VALID_ROLE_FRIEND).withDetail("").build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -70,7 +70,9 @@ public class AddCommandParserTest {
 
 
         // multiple roles - all accepted
-        Person expectedPersonMultipleRoles = new PersonBuilder(BOB).withRoles(VALID_ROLE_FRIEND, VALID_ROLE_HUSBAND)
+        Person expectedPersonMultipleRoles = new PersonBuilder(BOB)
+                .withRoles(VALID_ROLE_FRIEND, VALID_ROLE_HUSBAND)
+                .withDetail("")
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + RATING_DESC_BOB
@@ -162,7 +164,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero Roles
-        Person expectedPerson = new PersonBuilder(AMY).withRoles().build();
+        Person expectedPerson = new PersonBuilder(AMY).withRoles().withDetail("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + RATING_DESC_AMY
                         + STATUS_DESC_AMY + REFERRAL_STATUS_DESC_AMY, new AddCommand(expectedPerson));
     }

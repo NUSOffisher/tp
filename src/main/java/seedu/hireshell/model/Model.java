@@ -100,6 +100,8 @@ public interface Model {
     /** Returns the currently selected person, or null if none selected. */
     Person getSelectedPerson();
 
-    /** Observable selected-person state for UI listeners. */
+    /**
+     * Observable selected-person state for UI listeners.
+     */
     ReadOnlyObjectProperty<Person> selectedPersonProperty();
 }

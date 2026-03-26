@@ -3,7 +3,6 @@ package seedu.hireshell.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import seedu.hireshell.commons.core.index.Index;
 import seedu.hireshell.commons.util.ToStringBuilder;

@@ -41,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setRoles(person.getRoles());
         descriptor.setStatus(person.getStatus());
         descriptor.setReferralStatus(person.getReferralStatus());
+        descriptor.setDetails(person.getDetails());
     }
 
     /**

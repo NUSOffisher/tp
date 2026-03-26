@@ -130,6 +130,10 @@ public class PersonListPanel extends UiPart<Region> {
         emailColumn.prefWidthProperty().bind(dynamicColumnWidth);
     }
 
+    /**
+     * Synchronizes the table row selection with the current model-selected person.
+     * @param person the person that should be selected in the table, or {@code null} to clear selection
+     */
     public void syncSelectionFromModel(Person person) {
         isSyncingSelection = true;
         try {

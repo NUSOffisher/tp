@@ -1,5 +1,6 @@
 package seedu.hireshell.testutil;
 
+import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -54,6 +55,7 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getRating().ifPresent(rating -> sb.append(PREFIX_RATING).append(rating.value).append(" "));
         descriptor.getStatus().ifPresent(address -> sb.append(PREFIX_STATUS).append(address.value).append(" "));
+        descriptor.getDetails().ifPresent(details -> sb.append(PREFIX_DETAILS).append(details.fullDetails).append(" "));
         descriptor.getReferralStatus().ifPresent(referralStatus -> sb.append(PREFIX_REFERRAL_STATUS)
                 .append(referralStatus.toString()).append(" "));
         if (descriptor.getRoles().isPresent()) {

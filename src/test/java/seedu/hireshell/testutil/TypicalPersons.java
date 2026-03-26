@@ -32,28 +32,31 @@ public class TypicalPersons {
             .withPhone("94351253").withRating("8.0")
             .withRoles("friends")
             .withReferralStatus("yes")
+            .withDetail("Met at career fair")
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withRating("8.5")
             .withRoles("owesMoney", "friends")
             .withReferralStatus("yes")
+            .withDetail("Met at career fair")
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withRating("7.0").withEmail("heinz@example.com").withAddress("wall street")
-            .withReferralStatus("yes").build();
+            .withReferralStatus("yes").withDetail("Met at career fair").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withRating("5.0").withEmail("cornelia@example.com")
-            .withAddress("10th street").withRoles("friends").withReferralStatus("yes").build();
+            .withAddress("10th street").withRoles("friends").withReferralStatus("yes")
+            .withDetail("Met at career fair").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withRating("9.5").withEmail("werner@example.com").withAddress("michegan ave")
-            .withReferralStatus("yes").build();
+            .withReferralStatus("yes").withDetail("Met at career fair").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withRating("6.0").withEmail("lydia@example.com").withAddress("little tokyo")
-            .withReferralStatus("yes").build();
+            .withReferralStatus("yes").withDetail("Met at career fair").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withRating("8.5").withEmail("anna@example.com").withAddress("4th street")
-            .withReferralStatus("yes").build();
+            .withReferralStatus("yes").withDetail("Met at career fair").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
