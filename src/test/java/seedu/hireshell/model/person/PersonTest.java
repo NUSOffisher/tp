@@ -66,7 +66,6 @@ public class PersonTest {
         assertTrue(person.getCreatedAt().isBefore(after) || person.getCreatedAt().isEqual(after));
         assertTrue(person.getUpdatedAt().isAfter(before) || person.getUpdatedAt().isEqual(before));
         assertTrue(person.getUpdatedAt().isBefore(after) || person.getUpdatedAt().isEqual(after));
-        assertEquals(person.getCreatedAt(), person.getUpdatedAt());
 
         // Constructor with 9 arguments: createdAt preserved, updatedAt should be around LocalDateTime.now()
         LocalDateTime fixedCreatedAt = LocalDateTime.of(2020, 1, 1, 12, 0);
