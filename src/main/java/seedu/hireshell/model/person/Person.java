@@ -146,7 +146,9 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both persons have the same identity and data fields
+     * Date fields are excluded as they are metadata and shouldn't define business equality
+     * This also ensures parser tests will not break due to the new fields
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -168,9 +170,7 @@ public class Person {
                 && status.equals(otherPerson.status)
                 && roles.equals(otherPerson.roles)
                 && referralStatus.equals(otherPerson.referralStatus)
-                && details.equals(otherPerson.details)
-                && createdAt.equals(otherPerson.createdAt)
-                && updatedAt.equals(otherPerson.updatedAt);
+                && details.equals(otherPerson.details);
     }
 
     @Override

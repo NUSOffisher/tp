@@ -7,7 +7,9 @@
     "status": "123, Jurong West Ave 6, #08-111",
     "roles": [ "friends" ],
     "referralStatus": "REFERRED",
-    "detail" : "Met at career fair"
+    "detail" : "Met at career fair",
+    "createdAt" : "2026-03-31T12:34:10.221401300",
+    "updatedAt" : "2026-03-31T12:34:19.703711100"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -15,6 +17,8 @@
     "rating": "3.0",
     "status": "4th street",
     "referralStatus": "REFERRED",
-    "detail" : "Met at career fair"
+    "detail" : "Met at career fair",
+    "createdAt" : "2026-03-31T12:34:10.221401300",
+    "updatedAt" : "2026-03-31T12:34:19.703711100"
   } ]
 }
