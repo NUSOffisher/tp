@@ -2,6 +2,7 @@ package seedu.hireshell.model.person;
 
 import static seedu.hireshell.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,6 +29,9 @@ public class Person {
     private final ReferralStatus referralStatus;
     private final Details details;
 
+    private final LocalDateTime createdAt;
+    private final LocalDateTime updatedAt;
+
     /**
      * Every field must be present and not null.
      */
@@ -42,7 +46,47 @@ public class Person {
         this.roles.addAll(roles);
         this.referralStatus = referralStatus;
         this.details = details;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
+
+    /**
+     * Constructor to be used by edit command to copy createdAt
+     */
+    public Person(Name name, Phone phone, Email email, Rating rating, Status status, Set<Role> roles,
+                  ReferralStatus referralStatus, Details details, LocalDateTime createdAt) {
+        requireAllNonNull(name, phone, email, status, roles, referralStatus);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.rating = rating;
+        this.status = status;
+        this.roles.addAll(roles);
+        this.referralStatus = referralStatus;
+        this.details = details;
+        this.createdAt = createdAt;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    /**
+     * Constructor to be used for reading from storage and testing to copy full attributes.
+     */
+    public Person(Name name, Phone phone, Email email, Rating rating, Status status, Set<Role> roles,
+                  ReferralStatus referralStatus, Details details, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        requireAllNonNull(name, phone, email, status, roles, referralStatus);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.rating = rating;
+        this.status = status;
+        this.roles.addAll(roles);
+        this.referralStatus = referralStatus;
+        this.details = details;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+
 
     public Name getName() {
         return name;
@@ -78,6 +122,14 @@ public class Person {
 
     public Details getDetails() {
         return details;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     /**
@@ -116,7 +168,9 @@ public class Person {
                 && status.equals(otherPerson.status)
                 && roles.equals(otherPerson.roles)
                 && referralStatus.equals(otherPerson.referralStatus)
-                && details.equals(otherPerson.details);
+                && details.equals(otherPerson.details)
+                && createdAt.equals(otherPerson.createdAt)
+                && updatedAt.equals(otherPerson.updatedAt);
     }
 
     @Override
@@ -136,6 +190,8 @@ public class Person {
                 .add("roles", roles)
                 .add("referralStatus", referralStatus)
                 .add("details", details)
+                .add("createdAt", createdAt)
+                .add("updatedAt", updatedAt)
                 .toString();
     }
 }
