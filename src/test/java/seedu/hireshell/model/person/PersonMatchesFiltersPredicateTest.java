@@ -160,8 +160,10 @@ public class PersonMatchesFiltersPredicateTest {
         assertNotEquals(dateFilter, null);
         assertNotEquals(dateFilter, "string");
 
-        PersonMatchesFiltersPredicate predicate1 = new PersonMatchesFiltersPredicate(ratingFilter, "status", dateFilter);
-        PersonMatchesFiltersPredicate predicate2 = new PersonMatchesFiltersPredicate(ratingFilter, "status", dateFilter);
+        PersonMatchesFiltersPredicate predicate1 = new PersonMatchesFiltersPredicate(
+                ratingFilter, "status", dateFilter);
+        PersonMatchesFiltersPredicate predicate2 = new PersonMatchesFiltersPredicate(
+                ratingFilter, "status", dateFilter);
         PersonMatchesFiltersPredicate predicate3 = new PersonMatchesFiltersPredicate(null, "status", dateFilter);
         PersonMatchesFiltersPredicate predicate4 = new PersonMatchesFiltersPredicate(ratingFilter, null, dateFilter);
         PersonMatchesFiltersPredicate predicate5 = new PersonMatchesFiltersPredicate(ratingFilter, "status", null);
