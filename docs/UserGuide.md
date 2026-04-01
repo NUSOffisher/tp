@@ -166,35 +166,38 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Filtering persons by rating or status: `filter`
+### Filtering persons by rating, status, or date: `filter`
 
-Filters persons whose rating and/or status match the specified criteria.
+Filters persons whose rating, status, and/or date added match the specified criteria.
 
-Format: `filter [rt/RATING_FILTER] [s/STATUS]`
+Format: `filter [rt/RATING_FILTER] [s/STATUS] [dt/DATE_FILTER]`
 
 * At least one of the optional fields must be provided.
 * `RATING_FILTER` can include a comparison operator (`>`, `>=`, `<`, `<=`, `==`) followed by a number. If no operator is provided, `==` is assumed.
 * `STATUS` matches the status field of the person (case-insensitive).
-* If both rating and status are provided, only persons matching both criteria will be shown.
+* `DATE_FILTER` must be in the format `before DATE` or `after DATE` (where `DATE` is in `YYYY-MM-DD` format).
+* If multiple criteria are provided, only persons matching **all** of them will be shown.
 
 Examples:
 * `filter rt/ >= 7` returns persons with a rating of 7.0 or higher.
 * `filter s/Interviewing` returns persons whose status is "Interviewing".
-* `filter rt/ < 5 s/Rejected` returns persons with a rating less than 5.0 and a status of "Rejected".
+* `filter dt/after 2026-01-01` returns persons added after January 1st, 2026.
+* `filter rt/ < 5 s/Rejected dt/before 2026-03-01` returns persons with a rating less than 5.0, a status of "Rejected", and added before March 1st, 2026.
 
-### Sorting persons by rating: `sort`
+### Sorting persons by rating or date: `sort`
 
-Sorts the currently displayed list of persons by their rating.
+Sorts the currently displayed list of persons by their rating or the date they were added.
 
-Format: `sort rt/ORDER`
+Format: `sort rt/ORDER` or `sort dt/ORDER`
 
 * `ORDER` must be either `asc` (for ascending order) or `desc` (for descending order).
-* `asc` sorts persons from the lowest rating to the highest.
-* `desc` sorts persons from the highest rating to the lowest.
+* `rt/ORDER` sorts persons by their rating.
+* `dt/ORDER` sorts persons by the date they were added.
+* You can only sort by one field at a time.
 
 Examples:
-* `sort rt/asc`
-* `sort rt/desc`
+* `sort rt/desc` sorts persons from the highest rating to the lowest.
+* `sort dt/asc` sorts persons from the earliest added to the latest.
 
 ### Deleting a person : `delete`
 
@@ -345,10 +348,10 @@ _Details coming soon ..._
 | **[Clear](#clearing-all-entries-clear)**                    | `clear`                                                                                                                                                                                     |
 | **[Delete](#deleting-a-person-delete)**                     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                         |
 | **[Edit](#editing-a-person-edit)**                          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFERRAL_STATUS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com rt/9.0`                         |
-| **[Filter](#filtering-persons-by-rating-or-status-filter)** | `filter [rt/RATING_FILTER] [s/STATUS]` <br> e.g., `filter rt/ >= 7 s/Interviewing`                                                                                                          |
+| **[Filter](#filtering-persons-by-rating-status-or-date-filter)** | `filter [rt/RATING_FILTER] [s/STATUS] [dt/DATE_FILTER]` <br> e.g., `filter rt/ >= 7 dt/after 2026-01-01`                                               |
 | **[Find](#locating-persons-by-name-find)**                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                  |
 | **[List](#listing-all-persons-list)**                       | `list`                                                                                                                                                                                      |
-| **[Sort](#sorting-persons-by-rating-sort)**                 | `sort rt/ORDER` <br> e.g., `sort rt/desc`                                                                                                                                                   |
+| **[Sort](#sorting-persons-by-rating-or-date-sort)**         | `sort rt/ORDER` or `sort dt/ORDER` <br> e.g., `sort dt/desc`                                                                                                                                |
 | **[Help](#viewing-help-help)**                              | `help`                                                                                                                                                                                      |
 | **[Export](#exporting-data-export)**                        | `export`                                                                                                                                                                                    |
 | **[Select](#Selecting-a-person-select)**                    | `select INDEX`<br> e.g., `select 1`                                                                                                                                                          |
