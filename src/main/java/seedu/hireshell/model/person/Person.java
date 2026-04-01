@@ -2,6 +2,7 @@ package seedu.hireshell.model.person;
 
 import static seedu.hireshell.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,6 +29,8 @@ public class Person {
     private final ReferralStatus referralStatus;
     private final Details details;
 
+    private final LocalDateTime createdAt;
+
     /**
      * Every field must be present and not null.
      */
@@ -42,7 +45,27 @@ public class Person {
         this.roles.addAll(roles);
         this.referralStatus = referralStatus;
         this.details = details;
+        this.createdAt = LocalDateTime.now();
     }
+
+    /**
+     * Constructor to be used for reading from storage and testing to copy full attributes.
+     */
+    public Person(Name name, Phone phone, Email email, Rating rating, Status status, Set<Role> roles,
+                  ReferralStatus referralStatus, Details details, LocalDateTime createdAt) {
+        requireAllNonNull(name, phone, email, status, roles, referralStatus);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.rating = rating;
+        this.status = status;
+        this.roles.addAll(roles);
+        this.referralStatus = referralStatus;
+        this.details = details;
+        this.createdAt = createdAt;
+    }
+
+
 
     public Name getName() {
         return name;
@@ -80,6 +103,10 @@ public class Person {
         return details;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * Returns true if both persons have the same name and phone number
      * This defines a weaker notion of equality between two persons.
@@ -94,7 +121,9 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both persons have the same identity and data fields
+     * Date fields are excluded as they are metadata and shouldn't define business equality
+     * This also ensures parser tests will not break due to the new fields
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -136,6 +165,7 @@ public class Person {
                 .add("roles", roles)
                 .add("referralStatus", referralStatus)
                 .add("details", details)
+                .add("createdAt", createdAt)
                 .toString();
     }
 }

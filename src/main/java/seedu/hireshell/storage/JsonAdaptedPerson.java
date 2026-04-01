@@ -1,5 +1,7 @@
 package seedu.hireshell.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +38,8 @@ class JsonAdaptedPerson {
     private final String referralStatus;
     private final String detail;
 
+    private final String createdAt;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -45,7 +49,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("status") String status,
                              @JsonProperty("roles") List<JsonAdaptedRole> roles,
                              @JsonProperty("referralStatus") String referralStatus,
-                             @JsonProperty("detail") String detail) {
+                             @JsonProperty("detail") String detail,
+                             @JsonProperty("createdAt") String createdAt) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +61,7 @@ class JsonAdaptedPerson {
             this.roles.addAll(roles);
         }
         this.referralStatus = referralStatus;
+        this.createdAt = createdAt;
     }
 
     /**
@@ -72,6 +78,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         referralStatus = source.getReferralStatus().name();
         detail = source.getDetails().fullDetails;
+        createdAt = source.getCreatedAt().toString();
     }
 
     /**
@@ -141,6 +148,17 @@ class JsonAdaptedPerson {
         }
         final Details modelDetails = new Details(detail);
 
+        if (createdAt == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalDateTime.class.getSimpleName()));
+        }
+        try {
+            LocalDateTime.parse(createdAt);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException("Could not read LocalDateTime value");
+        }
+        final LocalDateTime createdAt = LocalDateTime.parse(this.createdAt);
+
         try {
             modelReferralStatus = ReferralStatus.valueOf(referralStatus);
         } catch (IllegalArgumentException e) {
@@ -148,7 +166,7 @@ class JsonAdaptedPerson {
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelRating, modelStatus, modelRoles,
-                modelReferralStatus, modelDetails);
+                modelReferralStatus, modelDetails, createdAt);
     }
 
 }

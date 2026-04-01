@@ -14,6 +14,8 @@ import static seedu.hireshell.testutil.TypicalPersons.ALICE;
 import static seedu.hireshell.testutil.TypicalPersons.AMY;
 import static seedu.hireshell.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.hireshell.testutil.PersonBuilder;
@@ -54,6 +56,24 @@ public class PersonTest {
     }
 
     @Test
+    public void metadata_behavior() {
+        // Constructor with 8 arguments: createdAt should be around LocalDateTime.now()
+        LocalDateTime before = LocalDateTime.now().minusSeconds(1);
+        Person person = new PersonBuilder().buildWithDefaultConstructor();
+        LocalDateTime after = LocalDateTime.now().plusSeconds(1);
+
+        assertTrue(person.getCreatedAt().isAfter(before) || person.getCreatedAt().isEqual(before));
+        assertTrue(person.getCreatedAt().isBefore(after) || person.getCreatedAt().isEqual(after));
+
+        // Constructor with 9 arguments: createdAt preserved
+        LocalDateTime fixedCreatedAt = LocalDateTime.of(2020, 1, 1, 12, 0);
+        Person editedPerson = new Person(person.getName(), person.getPhone(), person.getEmail(), person.getRating(),
+                person.getStatus(), person.getRoles(), person.getReferralStatus(), person.getDetails(), fixedCreatedAt);
+
+        assertEquals(fixedCreatedAt, editedPerson.getCreatedAt());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
@@ -90,6 +110,10 @@ public class PersonTest {
         // different roles -> returns false
         editedAlice = new PersonBuilder(ALICE).withRoles(VALID_ROLE_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different createdAt -> returns true
+        editedAlice = new PersonBuilder(ALICE).withCreatedAt(ALICE.getCreatedAt().plusDays(1)).build();
+        assertTrue(ALICE.equals(editedAlice));
     }
 
     @Test
@@ -97,7 +121,8 @@ public class PersonTest {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", rating=" + ALICE.getRating()
                 + ", status=" + ALICE.getStatus() + ", roles=" + ALICE.getRoles() + ", referralStatus="
-                + ALICE.getReferralStatus() + ", details=" + ALICE.getDetails() + "}";
+                + ALICE.getReferralStatus() + ", details=" + ALICE.getDetails() + ", createdAt=" + ALICE.getCreatedAt()
+                + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

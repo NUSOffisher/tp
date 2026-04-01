@@ -10,6 +10,7 @@ import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hireshell.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -112,9 +113,10 @@ public class EditCommand extends Command {
         ReferralStatus updatedReferralStatus = editPersonDescriptor.getReferralStatus()
                 .orElse(personToEdit.getReferralStatus());
         Details updatedDetails = editPersonDescriptor.getDetails().orElse(personToEdit.getDetails());
+        LocalDateTime createdAt = personToEdit.getCreatedAt();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRating, updatedStatus, updatedRoles,
-                updatedReferralStatus, updatedDetails);
+                updatedReferralStatus, updatedDetails, createdAt);
     }
 
     @Override

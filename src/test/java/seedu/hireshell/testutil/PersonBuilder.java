@@ -1,5 +1,6 @@
 package seedu.hireshell.testutil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,8 @@ public class PersonBuilder {
     public static final String DEFAULT_RATING = "5.0";
     public static final String DEFAULT_STATUS = "Pending";
     public static final String DEFAULT_DETAIL = "Summer 2026 intake";
-
+    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.of(2025,
+            3, 30, 12, 0, 0);
 
     private Name name;
     private Phone phone;
@@ -35,6 +37,7 @@ public class PersonBuilder {
     private Status status;
     private ReferralStatus referralStatus;
     private Details details;
+    private LocalDateTime createdAt;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +51,7 @@ public class PersonBuilder {
         status = new Status(DEFAULT_STATUS);
         referralStatus = ReferralStatus.NOT_REFERRED;
         details = new Details(DEFAULT_DETAIL);
+        createdAt = DEFAULT_DATETIME;
     }
 
     /**
@@ -62,6 +66,7 @@ public class PersonBuilder {
         status = personToCopy.getStatus();
         referralStatus = personToCopy.getReferralStatus();
         details = personToCopy.getDetails();
+        createdAt = personToCopy.getCreatedAt();
     }
 
     /**
@@ -138,7 +143,22 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code createdAt} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
     public Person build() {
+        return new Person(name, phone, email, rating, status, roles, referralStatus, details, createdAt);
+    }
+
+    /**
+     * Builds a person using the default constructor (8-argument) which sets createdAt to now.
+     */
+    public Person buildWithDefaultConstructor() {
         return new Person(name, phone, email, rating, status, roles, referralStatus, details);
     }
 
