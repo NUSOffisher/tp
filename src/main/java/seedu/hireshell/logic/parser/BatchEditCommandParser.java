@@ -95,10 +95,10 @@ public class BatchEditCommandParser implements Parser<BatchEditCommand> {
         // 2. Parse edit descriptor
         ArgumentMultimap editMultimap =
                 ArgumentTokenizer.tokenize(editArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_RATING, PREFIX_STATUS, PREFIX_ROLE, PREFIX_REFERRAL_STATUS);
+                        PREFIX_RATING, PREFIX_STATUS, PREFIX_ROLE, PREFIX_REFERRAL_STATUS, PREFIX_DETAILS);
 
         editMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_RATING,
-                PREFIX_STATUS, PREFIX_REFERRAL_STATUS);
+                PREFIX_STATUS, PREFIX_REFERRAL_STATUS, PREFIX_DETAILS);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
