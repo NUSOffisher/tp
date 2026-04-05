@@ -53,6 +53,7 @@ public class BatchDeleteCommand extends Command {
             model.deletePerson(person);
         }
 
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_BATCH_DELETE_SUCCESS, personsToDelete.size()));
     }
 
