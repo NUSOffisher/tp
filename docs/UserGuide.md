@@ -114,6 +114,9 @@ Adds a person to the address book.
 
 Format: `add  n/NAME p/PHONE e/EMAIL [rt/RATING] s/STATUS rs/REFERRAL_STATUS [r/ROLE] [d/DETAIL]…​`
 
+* Persons with the same name/phone number can be added
+* Persons with **both** the same name and phone number will be considered a duplicate person, 
+
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of roles (including 0)
@@ -143,6 +146,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rt/RATING] [s/STATUS] [rs/REFE
 * When editing roles, the existing roles of the person will be removed i.e adding of roles is not cumulative.
 * You can remove all the person’s roles by typing `r/` without
     specifying any roles after it.
+* If a person is updated in a way that causes their details to exactly match an already existing person (ignoring roles/statuses), an error will be thrown to prevent duplicate persons
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
