@@ -16,8 +16,13 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Defensive Java code to set ResultDisplay to not be editable and not allow focus traversal
+     */
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setEditable(false);
+        resultDisplay.setFocusTraversable(false);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
