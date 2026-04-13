@@ -84,7 +84,7 @@ simply push the 'tab' button again.
 | Field Name               | Explanation, Examples                                                                                                                           |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`n/NAME`**             | Name of the contact. <br> e.g., `n/James Ho `                                                                                                   |
-| **`p/PHONE_NUMBER`**     | Contact's Phone number.<br> e.g., `p/91234567`                                                                                                  |
+| **`p/PHONE_NUMBER`**     | Contact's Phone number. Only accepts numbers, and should be at least 3 digits long.<br> e.g., `p/91234567`                                      |
 | **`e/EMAIL`**            | Contact's Email address.<br> e.g., `e/jamesho@example.com`                                                                                      |
 | **`[rt/RATING]`**        | Company's rating of the contact. Optional field, defaults to `0.0` if not entered.<br> e.g., `rt/8.5`                                           |
 | **`s/STATUS`**           | Status of the contact's application.<br> e.g., `s/Rejected`                                                                                     |
