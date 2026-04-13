@@ -79,6 +79,22 @@ simply push the 'tab' button again.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## List of fields
+
+| Field Name     | Explanation, Examples                                                                                                                           |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`n/NAME`**   | Name of the contact. <br> e.g., `n/James Ho `                                                                                                   |
+| **`p/PHONE_NUMBER`** | Contact's Phone number.<br> e.g., `p/91234567`                                                                                                  |
+| **`e/EMAIL`**  | Contact's Email address.<br> e.g., `e/jamesho@example.com`                                                                                      |
+| **`[rt/RATING]`** | Contact's Rating. Optional field, defaults to `0.0` if not entered.<br> e.g., `rt/8.5`                                                          |
+| **`s/STATUS`** | Status of the contact's application.<br> e.g., `s/Rejected`                                                                                     |
+| **`rs/REFERRAL_STATUS`** | Referral Status of the contact (i.e. was the contact referred by someone?). Only accepts 'Yes' and 'No' (Non-case sensitive).<br> e.g.,`rs/Yes` |
+| **`[r/ROLE]…`​** | Role that the contact applied for. Optional field, contact can have more than 1 role.<br> e.g., `r/SoftwareEngineer r/DevOps`                   |
+| **`[d/DETAIL]`** | Additional details related to the contact. Optional field.<br> e.g., `d/Met at career fair`                                                     |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <box type="info" seamless>
@@ -254,7 +270,7 @@ Format: `batch edit [s/STATUS] [r/ROLE]... [rt/RATING_CONDITION] to [n/NAME] [p/
 Examples:
 * `batch edit r/Intern to s/REJECTED` changes the status to REJECTED for all persons who have the "Intern" role.
 * `batch edit s/APPLIED to rt/5.0` sets the rating to 5.0 for everyone who currently has an APPLIED status.
-* `batch edit rt/< 3.0 s/APPLIED to s/REJECTED rt/0.0 rs/Unsuccessful` finds anyone who is APPLIED with a rating < 3.0, and simultaneously changes their status to REJECTED, rating to 0.0, and referral status to Unsuccessful.
+* `batch edit rt/< 3.0 s/APPLIED to s/REJECTED rt/0.0 rs/No` finds anyone who is APPLIED with a rating < 3.0, and simultaneously changes their status to REJECTED, rating to 0.0, and referral status to Unsuccessful.
 * `batch edit r/Frontend rt/> 8.0 to r/Frontend Lead s/INTERVIEWED` finds anyone with a Frontend role and a rating > 8.0, and updates their role to Frontend Lead and status to INTERVIEWED.
 
 ### Clearing all entries : `clear`
